@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+    # Container Database
+    mysqldb:
+        image: mysql:8.0
+        container_name: task_mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: task_management
+        ports:
+            - "3307:3307"
+        volumes:
+            - db_data:/var/lib/mysql
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+            timeout: 20s
+            retries: 10
+
+    # Container Aplikasi
+    backend:
+        build: .
+        container_name: task_backend
+        restart: always
+        ports:
+            - "3001:3001"
+        depends_on:
+            mysqldb:
+                condition: service_healthy
+        environment:
+            APP_URL: http://localhost:3001
+            PORT: 3001
+            ALLOWED_ORIGINS: http://localhost:3000,http://localhost:3001,http://localhost:3002,http://localhost:5000
+            DB_HOST: mysqldb
+            DB_PORT: 3306
+            DB_USERNAME: root
+            DB_PASSWORD: root
+            DB_NAME: task_management
+            NODE_ENV: production
+            JWT_SECRET: 0WJzB39jkff9sWM9DFRD7l4piLygdKUzyu15UKlEIHpNUH6KE2
+            JWT_REFRESH_SECRET: GnvEfh2NJfdCghoTK1ku0MOH4eVLFcYBWmo1pzrboJyUWeUdmW
+            JWT_EXPIRES_IN: 1800s
+            JWT_REFRESH_EXPIRES_IN: 86400s
+
+volumes:
+    db_data:
