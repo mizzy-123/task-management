@@ -4,7 +4,7 @@ import { ResponseError } from "../error/response.error";
 
 export const errorMiddleware = async (
     error: Error,
-    req: Request,
+    _req: Request,
     res: Response,
     next: NextFunction
 ) => {

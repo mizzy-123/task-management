@@ -9,9 +9,9 @@ import {
 import { User } from "./User";
 
 export enum TaskStatus {
-    TODO = "To Do",
-    IN_PROGRESS = "In Progress",
-    DONE = "Done"
+    TODO = "to_do",
+    IN_PROGRESS = "in_progress",
+    DONE = "done"
 }
 
 @Entity()
