@@ -8,3 +8,16 @@ export interface ITask {
   created_by: string;
   created_at: string; // Format ISO 8601 Date String
 }
+
+// Interface untuk detail error per field
+export interface TaskValidationError {
+  field: string; // misal: 'title', 'description'
+  message: string;
+}
+
+// Interface utama response error
+export interface CreateTaskErrorResponse {
+  code: number;
+  message: string;
+  error: TaskValidationError[];
+}

@@ -33,12 +33,18 @@ const handler = NextAuth({
   },
 
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
+      // Handle initial login
       if (user) {
         token.username = user.username;
         token.email = user.email;
         token.name = user.name;
         token.accessToken = user.accessToken;
+      }
+
+      // Handle session update (refresh token)
+      if (trigger === "update" && session?.accessToken) {
+        token.accessToken = session.accessToken;
       }
 
       return token;

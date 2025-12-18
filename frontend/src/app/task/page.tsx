@@ -1,5 +1,10 @@
 import DashboardView from "@/components/views/task";
+import { Suspense } from "react";
 
 export default function Page() {
-  return <DashboardView />;
+  return (
+    <Suspense>
+      <DashboardView />
+    </Suspense>
+  );
 }

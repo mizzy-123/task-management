@@ -29,47 +29,47 @@ import { DialogContext } from "@/context/DialogContext";
 import useTask from "@/components/views/task/useTask";
 import { Controller } from "react-hook-form";
 
-export default function AddTaskAlertDialog() {
+export default function EditTaskAlertDialog() {
   // React context API
-  const { dialogAddTask, setDialogAddTask } = useContext(DialogContext);
+  const { dialogEditTask, setDialogEditTask } = useContext(DialogContext);
 
   // Tanstack Query
   const {
-    registerAddTask,
-    handleSubmitAddTask,
-    errorAddTask,
-    controlAddTask,
-    handleAddTask,
-    isPendingAddTask,
-    resetAddTask,
+    registerEditTask,
+    handleSubmitEditTask,
+    errorEditTask,
+    controlEditTask,
+    handleEditTask,
+    isPendingEditTask,
+    resetEditTask,
   } = useTask();
 
   const [openDate, setOpenDate] = useState(false);
 
   const handleCancel = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    resetAddTask();
-    setDialogAddTask(false);
+    resetEditTask();
+    setDialogEditTask(null);
   };
   return (
-    <AlertDialog open={dialogAddTask}>
+    <AlertDialog open={!!dialogEditTask}>
       <AlertDialogContent>
-        <form onSubmit={handleSubmitAddTask(handleAddTask)}>
+        <form onSubmit={handleSubmitEditTask(handleEditTask)}>
           <AlertDialogHeader>
-            <AlertDialogTitle>Add Task</AlertDialogTitle>
+            <AlertDialogTitle>Edit Task</AlertDialogTitle>
             <FieldGroup>
               {/* ... Field Title ... */}
               <Field>
                 <FieldLabel htmlFor="title">Title</FieldLabel>
                 <Input
-                  {...registerAddTask("title")}
+                  {...registerEditTask("title")}
                   id="title"
                   type="text"
                   placeholder="Input task titles"
                 />
-                {errorAddTask.title && (
+                {errorEditTask.title && (
                   <FieldDescription className="text-red-500">
-                    {errorAddTask.title.message}
+                    {errorEditTask.title.message}
                   </FieldDescription>
                 )}
               </Field>
@@ -78,13 +78,13 @@ export default function AddTaskAlertDialog() {
               <Field>
                 <FieldLabel htmlFor="description">Description</FieldLabel>
                 <Textarea
-                  {...registerAddTask("description")}
+                  {...registerEditTask("description")}
                   id="description"
                   placeholder="Input task description"
                 />
-                {errorAddTask.description && (
+                {errorEditTask.description && (
                   <FieldDescription className="text-red-500">
-                    {errorAddTask.description.message}
+                    {errorEditTask.description.message}
                   </FieldDescription>
                 )}
               </Field>
@@ -94,7 +94,7 @@ export default function AddTaskAlertDialog() {
                 <FieldLabel htmlFor="status">Status</FieldLabel>
                 <Controller
                   name="status"
-                  control={controlAddTask}
+                  control={controlEditTask}
                   render={({ field }) => (
                     <SelectBasic
                       placeholder="Filter status"
@@ -109,9 +109,9 @@ export default function AddTaskAlertDialog() {
                     />
                   )}
                 />
-                {errorAddTask.status && (
+                {errorEditTask.status && (
                   <FieldDescription className="text-red-500">
-                    {errorAddTask.status.message}
+                    {errorEditTask.status.message}
                   </FieldDescription>
                 )}
               </Field>
@@ -121,7 +121,7 @@ export default function AddTaskAlertDialog() {
                 <FieldLabel htmlFor="deadline">Deadline</FieldLabel>
                 <Controller
                   name="deadline"
-                  control={controlAddTask}
+                  control={controlEditTask}
                   render={({ field }) => (
                     <Popover open={openDate} onOpenChange={setOpenDate}>
                       <PopoverTrigger asChild>
@@ -153,9 +153,9 @@ export default function AddTaskAlertDialog() {
                     </Popover>
                   )}
                 />
-                {errorAddTask.deadline && (
+                {errorEditTask.deadline && (
                   <FieldDescription className="text-red-500">
-                    {errorAddTask.deadline.message}
+                    {errorEditTask.deadline.message}
                   </FieldDescription>
                 )}
               </Field>
@@ -166,9 +166,9 @@ export default function AddTaskAlertDialog() {
             <Button
               type="submit"
               className="cursor-pointer"
-              disabled={isPendingAddTask}
+              disabled={isPendingEditTask}
             >
-              {isPendingAddTask ? "Menyimpan..." : "Simpan"}
+              {isPendingEditTask ? "Menyimpan..." : "Simpan"}
             </Button>
             <Button
               onClick={handleCancel}
