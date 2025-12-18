@@ -1,5 +1,6 @@
 import { Router } from "express";
 import rateLimit from "express-rate-limit";
+import { UserController } from "../controller/user.controller";
 
 export const publicRouter = Router();
 
@@ -12,5 +13,5 @@ const authLimiter = rateLimit({
     legacyHeaders: false
 });
 
-publicRouter.post("/login", authLimiter);
-publicRouter.post("/register", authLimiter);
+publicRouter.post("/login", authLimiter, UserController.login);
+publicRouter.post("/register", authLimiter, UserController.register);

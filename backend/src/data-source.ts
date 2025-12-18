@@ -12,11 +12,17 @@ export const AppDataSource = new DataSource({
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    synchronize: false,
+    synchronize: !isProduction,
     logging: isProduction ? ["error", "warn"] : true,
-    entities: [isProduction ? "dist/entity/**/*.js" : "src/entity/**/*.ts"],
+    entities: [
+        isProduction
+            ? "dist/database/entity/**/*.js"
+            : "src/database/entity/**/*.ts"
+    ],
     migrations: [
-        isProduction ? "dist/migration/**/*.js" : "src/migration/**/*.ts"
+        isProduction
+            ? "dist/database/migration/**/*.js"
+            : "src/database/migration/**/*.ts"
     ],
     migrationsRun: true,
     extra: {
