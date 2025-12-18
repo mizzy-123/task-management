@@ -13,6 +13,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   async (request) => {
     const session: SessionExtended | null = await getSession();
+    console.log("accessToken", session?.accessToken);
     if (session && session.accessToken) {
       request.headers.Authorization = `Bearer ${session.accessToken}`;
     }

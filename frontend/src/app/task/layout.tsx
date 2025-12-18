@@ -5,11 +5,11 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "Dashboard - Task Managenment",
-  description: "Dashboard - Task Managenment",
+  title: "Task - Task Managenment",
+  description: "Task - Task Managenment",
 };
 
-export default function DashboardLayout({
+export default function TaskLayout({
   children,
 }: {
   children: React.ReactNode;

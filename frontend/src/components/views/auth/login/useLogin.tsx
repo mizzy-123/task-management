@@ -61,7 +61,7 @@ const useLogin = () => {
     onSuccess: () => {
       reset();
       toast.success("Berhasil login");
-      router.push("/dashboard");
+      router.push("/task");
     },
   });
 

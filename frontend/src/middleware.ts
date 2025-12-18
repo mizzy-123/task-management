@@ -6,9 +6,6 @@ export default withAuth(
     const token = req.nextauth.token;
     const { pathname } = req.nextUrl;
 
-    const expiresAt = token?.expiresAt ? Number(token.expiresAt) : undefined;
-    const isExpired = expiresAt ? Date.now() > expiresAt : false;
-
     const redirectTo = (path: string) =>
       NextResponse.redirect(new URL(path, req.url));
 
@@ -21,19 +18,12 @@ export default withAuth(
     }
 
     // jika sudah login (ada token)
-    if (
-      token &&
-      !isExpired &&
-      guestRoutes.some((routes) => pathname.startsWith(routes))
-    ) {
+    if (token && guestRoutes.some((routes) => pathname.startsWith(routes))) {
       return redirectTo("/dashboard");
     }
 
     // jika user belum login
-    if (
-      (!token || isExpired) &&
-      protectedRoutes.some((route) => pathname.startsWith(route))
-    ) {
+    if (!token && protectedRoutes.some((route) => pathname.startsWith(route))) {
       return redirectTo("/login");
     }
 
