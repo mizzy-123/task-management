@@ -4,53 +4,59 @@ Backend API untuk Task Management System yang dibangun menggunakan Node.js, Expr
 
 ## 🚀 Fitur Utama
 
-- ✅ **RESTful API** - Arsitektur REST yang clean dan terstruktur
-- ✅ **Authentication & Authorization** - JWT-based authentication dengan refresh token
-- ✅ **CRUD Operations** - Complete task management operations
-- ✅ **Input Validation** - Schema validation menggunakan Zod
-- ✅ **Database ORM** - TypeORM untuk type-safe database operations
-- ✅ **Error Handling** - Centralized error handling middleware
-- ✅ **Logging System** - Winston logger untuk tracking dan debugging
-- ✅ **Database Migration** - Version control untuk database schema
-- ✅ **Database Seeding** - Sample data untuk development
-- ✅ **Security** - CORS, bcrypt password hashing, SQL injection prevention
+-   ✅ **RESTful API** - Arsitektur REST yang clean dan terstruktur
+-   ✅ **Authentication & Authorization** - JWT-based authentication dengan refresh token
+-   ✅ **CRUD Operations** - Complete task management operations
+-   ✅ **Input Validation** - Schema validation menggunakan Zod
+-   ✅ **Database ORM** - TypeORM untuk type-safe database operations
+-   ✅ **Error Handling** - Centralized error handling middleware
+-   ✅ **Logging System** - Winston logger untuk tracking dan debugging
+-   ✅ **Database Migration** - Version control untuk database schema
+-   ✅ **Database Seeding** - Sample data untuk development
+-   ✅ **Security** - CORS, bcrypt password hashing, SQL injection prevention
 
 ## 🛠️ Teknologi yang Digunakan
 
 ### Core Framework
-- **Node.js** - JavaScript runtime environment
-- **Express.js** - Fast, unopinionated web framework
-- **TypeScript** - Typed superset of JavaScript
+
+-   **Node.js** - JavaScript runtime environment
+-   **Express.js** - Fast, unopinionated web framework
+-   **TypeScript** - Typed superset of JavaScript
 
 ### Database
-- **MySQL** - Relational database management system
-- **TypeORM** - ORM untuk TypeScript dan JavaScript
+
+-   **MySQL** - Relational database management system
+-   **TypeORM** - ORM untuk TypeScript dan JavaScript
 
 ### Authentication & Security
-- **JWT (jsonwebtoken)** - Token-based authentication
-- **Bcrypt** - Password hashing algorithm
-- **CORS** - Cross-Origin Resource Sharing
+
+-   **JWT (jsonwebtoken)** - Token-based authentication
+-   **Bcrypt** - Password hashing algorithm
+-   **CORS** - Cross-Origin Resource Sharing
 
 ### Validation & Utilities
-- **Zod** - TypeScript-first schema validation
-- **UUID** - Unique identifier generation
-- **Cookie Parser** - Parse HTTP request cookies
+
+-   **Zod** - TypeScript-first schema validation
+-   **UUID** - Unique identifier generation
+-   **Cookie Parser** - Parse HTTP request cookies
 
 ### Logging
-- **Winston** - Versatile logging library
-- **Morgan** - HTTP request logger middleware
+
+-   **Winston** - Versatile logging library
+-   **Morgan** - HTTP request logger middleware
 
 ### Development Tools
-- **Nodemon** - Auto-restart on file changes
-- **ESLint** - Code linting
-- **Prettier** - Code formatting
-- **ts-node** - TypeScript execution environment
+
+-   **Nodemon** - Auto-restart on file changes
+-   **ESLint** - Code linting
+-   **Prettier** - Code formatting
+-   **ts-node** - TypeScript execution environment
 
 ## 📋 Prerequisites
 
-- Node.js 18.x atau lebih baru
-- MySQL 8.x atau lebih baru
-- npm atau yarn package manager
+-   Node.js 18.x atau lebih baru
+-   MySQL 8.x atau lebih baru
+-   npm atau yarn package manager
 
 ## 🏃 Cara Menjalankan
 
@@ -210,29 +216,29 @@ backend/
 ```typescript
 @Entity()
 export class User {
-  @PrimaryColumn()
-  user_id: string;          // UUID
+    @PrimaryColumn()
+    user_id: string; // UUID
 
-  @Column({ unique: true })
-  username: string;         // Unique username
+    @Column({ unique: true })
+    username: string; // Unique username
 
-  @Column()
-  name: string;             // Full name
+    @Column()
+    name: string; // Full name
 
-  @Column({ unique: true })
-  email: string;            // Unique email
+    @Column({ unique: true })
+    email: string; // Unique email
 
-  @Column()
-  password: string;         // Bcrypt hashed password
+    @Column()
+    password: string; // Bcrypt hashed password
 
-  @CreateDateColumn()
-  created_at: Date;
+    @CreateDateColumn()
+    created_at: Date;
 
-  @UpdateDateColumn()
-  updated_at: Date;
+    @UpdateDateColumn()
+    updated_at: Date;
 
-  @OneToMany(() => Task, task => task.user)
-  tasks: Task[];
+    @OneToMany(() => Task, (task) => task.user)
+    tasks: Task[];
 }
 ```
 
@@ -241,79 +247,79 @@ export class User {
 ```typescript
 @Entity()
 export class Task {
-  @PrimaryColumn()
-  task_id: string;          // UUID
+    @PrimaryColumn()
+    task_id: string; // UUID
 
-  @Column()
-  user_id: string;          // Foreign key to User
+    @Column()
+    user_id: string; // Foreign key to User
 
-  @Column()
-  title: string;            // Task title
+    @Column()
+    title: string; // Task title
 
-  @Column('text')
-  description: string;      // Task description
+    @Column("text")
+    description: string; // Task description
 
-  @Column({
-    type: 'enum',
-    enum: ['to_do', 'in_progress', 'done'],
-    default: 'to_do'
-  })
-  status: string;           // Task status
+    @Column({
+        type: "enum",
+        enum: ["to_do", "in_progress", "done"],
+        default: "to_do"
+    })
+    status: string; // Task status
 
-  @Column({ nullable: true })
-  deadline: Date;           // Task deadline (optional)
+    @Column({ nullable: true })
+    deadline: Date; // Task deadline (optional)
 
-  @Column()
-  created_by: string;       // Creator name
+    @Column()
+    created_by: string; // Creator name
 
-  @CreateDateColumn()
-  created_at: Date;
+    @CreateDateColumn()
+    created_at: Date;
 
-  @ManyToOne(() => User, user => user.tasks, {
-    onDelete: 'CASCADE'
-  })
-  @JoinColumn({ name: 'user_id' })
-  user: User;
+    @ManyToOne(() => User, (user) => user.tasks, {
+        onDelete: "CASCADE"
+    })
+    @JoinColumn({ name: "user_id" })
+    user: User;
 }
 ```
 
 ### Relasi
 
-- **User → Task**: One to Many (Satu user bisa memiliki banyak task)
-- **Task → User**: Many to One (Setiap task dimiliki oleh satu user)
-- **CASCADE DELETE**: Jika user dihapus, semua task miliknya ikut terhapus
+-   **User → Task**: One to Many (Satu user bisa memiliki banyak task)
+-   **Task → User**: Many to One (Setiap task dimiliki oleh satu user)
+-   **CASCADE DELETE**: Jika user dihapus, semua task miliknya ikut terhapus
 
 ## 🔧 Environment Variables
 
-| Variable | Deskripsi | Default | Required |
-|----------|-----------|---------|----------|
-| `APP_URL` | Base URL aplikasi | `http://localhost:3001` | ✅ |
-| `PORT` | Port server | `3001` | ✅ |
-| `NODE_ENV` | Environment mode | `development` | ✅ |
-| `ALLOWED_ORIGINS` | CORS allowed origins (comma-separated) | - | ✅ |
-| `DB_HOST` | MySQL host | `localhost` | ✅ |
-| `DB_PORT` | MySQL port | `3306` | ✅ |
-| `DB_USERNAME` | Database username | `root` | ✅ |
-| `DB_PASSWORD` | Database password | - | ✅ |
-| `DB_NAME` | Database name | `task_management` | ✅ |
-| `JWT_SECRET` | JWT signing secret | - | ✅ |
-| `JWT_REFRESH_SECRET` | Refresh token secret | - | ✅ |
-| `JWT_EXPIRES_IN` | Access token expiry | `1800s` (30 min) | ✅ |
-| `JWT_REFRESH_EXPIRES_IN` | Refresh token expiry | `86400s` (24 hours) | ✅ |
+| Variable                 | Deskripsi                              | Default                 | Required |
+| ------------------------ | -------------------------------------- | ----------------------- | -------- |
+| `APP_URL`                | Base URL aplikasi                      | `http://localhost:3001` | ✅       |
+| `PORT`                   | Port server                            | `3001`                  | ✅       |
+| `NODE_ENV`               | Environment mode                       | `development`           | ✅       |
+| `ALLOWED_ORIGINS`        | CORS allowed origins (comma-separated) | -                       | ✅       |
+| `DB_HOST`                | MySQL host                             | `localhost`             | ✅       |
+| `DB_PORT`                | MySQL port                             | `3306`                  | ✅       |
+| `DB_USERNAME`            | Database username                      | `root`                  | ✅       |
+| `DB_PASSWORD`            | Database password                      | -                       | ✅       |
+| `DB_NAME`                | Database name                          | `task_management`       | ✅       |
+| `JWT_SECRET`             | JWT signing secret                     | -                       | ✅       |
+| `JWT_REFRESH_SECRET`     | Refresh token secret                   | -                       | ✅       |
+| `JWT_EXPIRES_IN`         | Access token expiry                    | `1800s` (30 min)        | ✅       |
+| `JWT_REFRESH_EXPIRES_IN` | Refresh token expiry                   | `86400s` (24 hours)     | ✅       |
 
 ## 📝 Available Scripts
 
-| Script | Deskripsi |
-|--------|-----------|
-| `yarn dev` | Jalankan development server dengan nodemon (auto-reload) |
-| `yarn build` | Compile TypeScript ke JavaScript (output: `dist/`) |
-| `yarn start` | Jalankan production server dari compiled code |
-| `yarn migration:generate` | Generate migration file dari entity changes |
-| `yarn migration:run` | Jalankan semua pending migrations |
-| `yarn migration:revert` | Rollback migration terakhir |
-| `yarn db:seed` | Populate database dengan sample data |
-| `yarn lint` | Run ESLint untuk code quality check |
-| `yarn format` | Format code dengan Prettier |
+| Script                    | Deskripsi                                                |
+| ------------------------- | -------------------------------------------------------- |
+| `yarn dev`                | Jalankan development server dengan nodemon (auto-reload) |
+| `yarn build`              | Compile TypeScript ke JavaScript (output: `dist/`)       |
+| `yarn start`              | Jalankan production server dari compiled code            |
+| `yarn migration:generate` | Generate migration file dari entity changes              |
+| `yarn migration:run`      | Jalankan semua pending migrations                        |
+| `yarn migration:revert`   | Rollback migration terakhir                              |
+| `yarn db:seed`            | Populate database dengan sample data                     |
+| `yarn lint`               | Run ESLint untuk code quality check                      |
+| `yarn format`             | Format code dengan Prettier                              |
 
 ## 🔐 Authentication Flow
 
@@ -332,16 +338,17 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
-  "status": 201,
-  "message": "User berhasil dibuat",
-  "data": {
-    "user_id": "uuid-here",
-    "username": "johndoe",
-    "name": "John Doe",
-    "email": "john@example.com"
-  }
+    "status": 201,
+    "message": "User berhasil dibuat",
+    "data": {
+        "user_id": "uuid-here",
+        "username": "johndoe",
+        "name": "John Doe",
+        "email": "john@example.com"
+    }
 }
 ```
 
@@ -358,20 +365,21 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
-  "status": 200,
-  "message": "Login berhasil",
-  "data": {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "user": {
-      "user_id": "uuid-here",
-      "username": "johndoe",
-      "name": "John Doe",
-      "email": "john@example.com"
+    "status": 200,
+    "message": "Login berhasil",
+    "data": {
+        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+        "user": {
+            "user_id": "uuid-here",
+            "username": "johndoe",
+            "name": "John Doe",
+            "email": "john@example.com"
+        }
     }
-  }
 }
 ```
 
@@ -398,29 +406,29 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 ### Public Routes (No Authentication Required)
 
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| POST | `/api/register` | Register user baru |
-| POST | `/api/login` | Login user |
-| POST | `/api/refresh-token` | Refresh access token |
+| Method | Endpoint             | Deskripsi            |
+| ------ | -------------------- | -------------------- |
+| POST   | `/api/register`      | Register user baru   |
+| POST   | `/api/login`         | Login user           |
+| POST   | `/api/refresh-token` | Refresh access token |
 
 ### Protected Routes (Authentication Required)
 
 #### User Management
 
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| GET | `/api/users/current` | Get current logged-in user data |
-| POST | `/api/logout` | Logout user (invalidate session) |
+| Method | Endpoint             | Deskripsi                        |
+| ------ | -------------------- | -------------------------------- |
+| GET    | `/api/users/current` | Get current logged-in user data  |
+| POST   | `/api/logout`        | Logout user (invalidate session) |
 
 #### Task Management
 
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| GET | `/api/tasks` | Get all tasks for current user |
-| POST | `/api/tasks` | Create new task |
-| PUT | `/api/tasks/:id` | Update task (owner only) |
-| DELETE | `/api/tasks/:id` | Delete task (owner only) |
+| Method | Endpoint         | Deskripsi                      |
+| ------ | ---------------- | ------------------------------ |
+| GET    | `/api/tasks`     | Get all tasks for current user |
+| POST   | `/api/tasks`     | Create new task                |
+| PUT    | `/api/tasks/:id` | Update task (owner only)       |
+| DELETE | `/api/tasks/:id` | Delete task (owner only)       |
 
 ### Detailed API Documentation
 
@@ -440,20 +448,21 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
-  "status": 201,
-  "message": "Task berhasil dibuat",
-  "data": {
-    "task_id": "uuid-here",
-    "title": "Complete project documentation",
-    "description": "Write comprehensive README for frontend and backend",
-    "status": "to_do",
-    "deadline": "2025-12-31T23:59:59.000Z",
-    "created_by": "John Doe",
-    "created_at": "2025-12-19T10:30:00.000Z",
-    "user_id": "uuid-here"
-  }
+    "status": 201,
+    "message": "Task berhasil dibuat",
+    "data": {
+        "task_id": "uuid-here",
+        "title": "Complete project documentation",
+        "description": "Write comprehensive README for frontend and backend",
+        "status": "to_do",
+        "deadline": "2025-12-31T23:59:59.000Z",
+        "created_by": "John Doe",
+        "created_at": "2025-12-19T10:30:00.000Z",
+        "user_id": "uuid-here"
+    }
 }
 ```
 
@@ -519,10 +528,10 @@ Memverifikasi JWT token dan mengekstrak user info:
 ```typescript
 // src/middleware/auth.middleware.ts
 export const authMiddleware = async (req, res, next) => {
-  // Verify JWT token from Authorization header
-  // Attach user data to request object
-  // Handle expired/invalid tokens
-}
+    // Verify JWT token from Authorization header
+    // Attach user data to request object
+    // Handle expired/invalid tokens
+};
 ```
 
 ### 2. Task Owner Middleware
@@ -532,9 +541,9 @@ Memastikan user hanya bisa modify task miliknya:
 ```typescript
 // src/middleware/task-owner.middleware.ts
 export const taskOwnerMiddleware = async (req, res, next) => {
-  // Check if current user is the task owner
-  // Prevent unauthorized access
-}
+    // Check if current user is the task owner
+    // Prevent unauthorized access
+};
 ```
 
 ### 3. Error Middleware
@@ -544,10 +553,10 @@ Centralized error handling:
 ```typescript
 // src/middleware/error.middleware.ts
 export const errorMiddleware = (err, req, res, next) => {
-  // Log error details
-  // Send appropriate error response
-  // Handle different error types
-}
+    // Log error details
+    // Send appropriate error response
+    // Handle different error types
+};
 ```
 
 ### 4. Not Found Middleware
@@ -557,8 +566,8 @@ Handle undefined routes:
 ```typescript
 // src/middleware/notfound.middleware.ts
 export const notFoundMiddleware = (req, res) => {
-  // Return 404 for undefined routes
-}
+    // Return 404 for undefined routes
+};
 ```
 
 ## 📊 Logging
@@ -567,18 +576,18 @@ Menggunakan **Winston** untuk logging dengan multiple transports:
 
 ### Log Levels
 
-- `error` - Error messages
-- `warn` - Warning messages
-- `info` - Informational messages
-- `http` - HTTP request logs
-- `debug` - Debug information
+-   `error` - Error messages
+-   `warn` - Warning messages
+-   `info` - Informational messages
+-   `http` - HTTP request logs
+-   `debug` - Debug information
 
 ### Log Output
 
-- **Console**: Development environment
-- **File**: Production environment (`logs/` directory)
-  - `error.log` - Error level logs
-  - `combined.log` - All level logs
+-   **Console**: Development environment
+-   **File**: Production environment (`logs/` directory)
+    -   `error.log` - Error level logs
+    -   `combined.log` - All level logs
 
 ### Log Format
 
@@ -631,8 +640,9 @@ yarn db:seed
 ```
 
 **Sample Data:**
-- 1 user dummy untuk testing
-- Multiple tasks dengan berbagai status
+
+-   1 user dummy untuk testing
+-   Multiple tasks dengan berbagai status
 
 ## 🔒 Security Best Practices
 
@@ -644,7 +654,7 @@ yarn db:seed
 ✅ **SQL Injection Prevention** - TypeORM parameterized queries  
 ✅ **Input Validation** - Zod schema validation  
 ✅ **Error Handling** - No sensitive data in error responses  
-✅ **Environment Variables** - Sensitive config in .env  
+✅ **Environment Variables** - Sensitive config in .env
 
 ### Security Recommendations
 
@@ -655,7 +665,7 @@ yarn db:seed
 🔐 Implement CSRF protection untuk web clients  
 🔐 Use helmet.js untuk security headers  
 🔐 Regular dependency updates  
-🔐 Enable database SSL connection in production  
+🔐 Enable database SSL connection in production
 
 ## 🚀 Deployment
 
@@ -671,26 +681,31 @@ docker run -p 3001:3001 --env-file .env task-management-backend
 ### Manual Deployment
 
 1. Build aplikasi:
+
 ```bash
 yarn build
 ```
 
 2. Copy files ke server:
+
 ```bash
 # Copy dist/, package.json, .env
 ```
 
 3. Install production dependencies:
+
 ```bash
 yarn install --production
 ```
 
 4. Run migrations:
+
 ```bash
 yarn migration:run
 ```
 
 5. Start server:
+
 ```bash
 yarn start
 ```
@@ -698,11 +713,12 @@ yarn start
 ### Environment Configuration
 
 Untuk production, pastikan update:
-- `NODE_ENV=production`
-- Strong JWT secrets
-- Secure database credentials
-- Proper CORS origins
-- Disable debug logging
+
+-   `NODE_ENV=production`
+-   Strong JWT secrets
+-   Secure database credentials
+-   Proper CORS origins
+-   Disable debug logging
 
 ## 🧪 Testing
 
@@ -710,8 +726,8 @@ Untuk production, pastikan update:
 
 1. Import `postman_collection.json` dari root project
 2. Set environment variables di Postman:
-   - `base_url`: http://localhost:3001
-   - `access_token`: (akan di-set otomatis setelah login)
+    - `base_url`: http://localhost:3001
+    - `access_token`: (akan di-set otomatis setelah login)
 
 ### Test Flow
 
@@ -734,9 +750,10 @@ Error: ER_ACCESS_DENIED_ERROR: Access denied for user
 ```
 
 **Solution:**
-- Verify database credentials di `.env`
-- Ensure MySQL server is running
-- Check user permissions
+
+-   Verify database credentials di `.env`
+-   Ensure MySQL server is running
+-   Check user permissions
 
 ### Migration Error
 
@@ -745,6 +762,7 @@ Error: Migration failed
 ```
 
 **Solution:**
+
 ```bash
 # Revert migration
 yarn migration:revert
@@ -761,6 +779,7 @@ Error: listen EADDRINUSE: address already in use :::3001
 ```
 
 **Solution:**
+
 ```bash
 # Windows
 netstat -ano | findstr :3001
@@ -782,12 +801,12 @@ yarn build
 
 ## 📚 Resources
 
-- [Express.js Documentation](https://expressjs.com/)
-- [TypeORM Documentation](https://typeorm.io/)
-- [TypeScript Documentation](https://www.typescriptlang.org/)
-- [Zod Documentation](https://zod.dev/)
-- [JWT.io](https://jwt.io/)
-- [Winston Logging](https://github.com/winstonjs/winston)
+-   [Express.js Documentation](https://expressjs.com/)
+-   [TypeORM Documentation](https://typeorm.io/)
+-   [TypeScript Documentation](https://www.typescriptlang.org/)
+-   [Zod Documentation](https://zod.dev/)
+-   [JWT.io](https://jwt.io/)
+-   [Winston Logging](https://github.com/winstonjs/winston)
 
 ## 📄 License
 

@@ -216,11 +216,11 @@ Password: 1234567890
 
 ### Dashboard
 
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshots/task_crud.png)
 
 ### Task List
 
-![Task List](screenshots/task-list.png)
+![Task List](screenshots/task_crud.png)
 
 ### Create Task
 
