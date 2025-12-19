@@ -2,11 +2,14 @@
 
 import * as React from "react";
 import { IconDatabase, IconInnerShadowTop } from "@tabler/icons-react";
+import { useSession } from "next-auth/react";
 
 import { NavDocuments } from "@/components/commons/navigation/nav-documents";
+import { NavUser } from "@/components/commons/navigation/nav-user";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -24,6 +27,8 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { data: session } = useSession();
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -44,6 +49,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavDocuments items={data.documents} />
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser
+          user={{
+            name: session?.name || "User",
+            email: session?.email || "",
+            avatar: "",
+          }}
+        />
+      </SidebarFooter>
     </Sidebar>
   );
 }

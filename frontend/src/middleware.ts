@@ -11,7 +11,7 @@ export default withAuth(
 
     const guestRoutes = ["/login", "/signup", "/forgot-password"];
 
-    const protectedRoutes = ["/dashboard2"];
+    const protectedRoutes = ["/task"];
 
     if (pathname == "/") {
       return redirectTo("/login");
@@ -19,7 +19,7 @@ export default withAuth(
 
     // jika sudah login (ada token)
     if (token && guestRoutes.some((routes) => pathname.startsWith(routes))) {
-      return redirectTo("/dashboard");
+      return redirectTo("/task");
     }
 
     // jika user belum login

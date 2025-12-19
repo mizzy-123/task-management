@@ -1,0 +1,1080 @@
+{
+	"info": {
+		"_postman_id": "8e3bbac5-6485-4936-bcaa-cb2d296c75cf",
+		"name": "Task Management API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27154881"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"mizzy12\",\r\n    \"name\": \"Muhammad Mizzy\",\r\n    \"email\": \"mizzy12342@gmail.com\",\r\n    \"password\": \"1234567890\",\r\n    \"password_confirmation\": \"1234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/api/register"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"mizzy12\",\r\n    \"name\": \"Muhammad Mizzy\",\r\n    \"email\": \"mizzy12342@gmail.com\",\r\n    \"password\": \"1234567890\",\r\n    \"password_confirmation\": \"1234567890\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/api/register"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "RateLimit-Policy",
+									"value": "5;w=600"
+								},
+								{
+									"key": "RateLimit",
+									"value": "limit=5, remaining=4, reset=600"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "130"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"82-yg9EaPEbMLyWkM0UfYfsHwYT/M0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 00:57:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 201,\n    \"message\": \"Register successfull\",\n    \"data\": {\n        \"username\": \"mizzy12\",\n        \"name\": \"Muhammad Mizzy\",\n        \"email\": \"mizzy12342@gmail.com\"\n    }\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/api/register"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "RateLimit-Policy",
+									"value": "5;w=600"
+								},
+								{
+									"key": "RateLimit",
+									"value": "limit=5, remaining=3, reset=555"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "520"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"208-ZwavdV4BaXVr9+b3rCCHw5GzK5k\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 00:57:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 400,\n    \"message\": \"username Invalid input: expected string, received undefined\",\n    \"error\": [\n        {\n            \"field\": \"username\",\n            \"message\": \"Invalid input: expected string, received undefined\"\n        },\n        {\n            \"field\": \"name\",\n            \"message\": \"Invalid input: expected string, received undefined\"\n        },\n        {\n            \"field\": \"email\",\n            \"message\": \"Invalid input: expected string, received undefined\"\n        },\n        {\n            \"field\": \"password\",\n            \"message\": \"Invalid input: expected string, received undefined\"\n        },\n        {\n            \"field\": \"password_confirmation\",\n            \"message\": \"Invalid input: expected string, received undefined\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"mizzy12342@gmail.com\",\r\n    \"password\": \"1234567890\"\r\n}"
+						},
+						"url": "{{baseUrl}}/api/login"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"mizzy12342@gmail.com\",\r\n    \"password\": \"1234567890\"\r\n}"
+								},
+								"url": "{{baseUrl}}/api/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "RateLimit-Policy",
+									"value": "5;w=600"
+								},
+								{
+									"key": "RateLimit",
+									"value": "limit=5, remaining=2, reset=496"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE5MDhhMTAzLWM3MzAtNDRiMS04ZGMzLWE1ZGQ1NzNlMWYwMiIsImVtYWlsIjoibWl6enkxMjM0MkBnbWFpbC5jb20iLCJuYW1lIjoiTXVoYW1tYWQgTWl6enkiLCJ1c2VybmFtZSI6Im1penp5MTIiLCJpYXQiOjE3NjYwMTk1MjksImV4cCI6MjM3MDgxOTUyOX0.ExCsoyORIRwVIsGv10hGtuS7XngJsaGV0IYj75RRPts; Max-Age=604800; Path=/api; Expires=Thu, 25 Dec 2025 00:58:49 GMT; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "433"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b1-WnbevOeUjAmJBacgo1Ow2QuEWrg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 00:58:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"message\": \"Login successfull\",\n    \"data\": {\n        \"username\": \"mizzy12\",\n        \"email\": \"mizzy12342@gmail.com\",\n        \"name\": \"Muhammad Mizzy\",\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE5MDhhMTAzLWM3MzAtNDRiMS04ZGMzLWE1ZGQ1NzNlMWYwMiIsImVtYWlsIjoibWl6enkxMjM0MkBnbWFpbC5jb20iLCJuYW1lIjoiTXVoYW1tYWQgTWl6enkiLCJ1c2VybmFtZSI6Im1penp5MTIiLCJpYXQiOjE3NjYwMTk1MjksImV4cCI6MTc2NjAzMDMyOX0.3y74fQI0fFUEmr6J71IxXwkOtpggKlhEZWgOKqvbsdk\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/api/refresh-token"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/api/refresh-token"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE5MDhhMTAzLWM3MzAtNDRiMS04ZGMzLWE1ZGQ1NzNlMWYwMiIsImVtYWlsIjoibWl6enkxMjM0MkBnbWFpbC5jb20iLCJuYW1lIjoiTXVoYW1tYWQgTWl6enkiLCJ1c2VybmFtZSI6Im1penp5MTIiLCJpYXQiOjE3NjYwOTY2NzksImV4cCI6MjM3MDg5NjY3OX0.ymgmC_irXOL7THIG2UnI5f-ZndiD1xEh88-9UbyyE8Q; Max-Age=604800; Path=/api; Expires=Thu, 25 Dec 2025 22:24:39 GMT; HttpOnly; SameSite=Strict"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "466"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d2-qzyBHpFRWmOv3alUU/Kc87cHxbY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 22:24:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"message\": \"Token refreshed successfully\",\n    \"data\": {\n        \"id\": \"a908a103-c730-44b1-8dc3-a5dd573e1f02\",\n        \"email\": \"mizzy12342@gmail.com\",\n        \"name\": \"Muhammad Mizzy\",\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE5MDhhMTAzLWM3MzAtNDRiMS04ZGMzLWE1ZGQ1NzNlMWYwMiIsImVtYWlsIjoibWl6enkxMjM0MkBnbWFpbC5jb20iLCJuYW1lIjoiTXVoYW1tYWQgTWl6enkiLCJ1c2VybmFtZSI6Im1penp5MTIiLCJpYXQiOjE3NjYwOTY2NzksImV4cCI6MTc2NjEwNzQ3OX0.lFHS-adJteKYj2CkKu4mtcKW4YiGDN-cPQH9cclE--0\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "task",
+			"item": [
+				{
+					"name": "Create task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test123456\",\r\n    \"description\": \"Task hebat banger\",\r\n    \"status\": \"in_progress\",\r\n    \"deadline\": \"2025-12-28\"\r\n}"
+						},
+						"url": "{{baseUrl}}/api/task"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Test123\",\r\n    \"description\": \"Task hebat banger\",\r\n    \"status\": \"to_do\",\r\n    \"deadline\": \"2025-12-20\"\r\n}"
+								},
+								"url": "{{baseUrl}}/api/task"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "281"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"119-cnE5izi75/s0e5yB6b/F6VHz4c0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 03:20:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 201,\n    \"message\": \"Task has been created\",\n    \"data\": {\n        \"task_id\": \"2c22e607-9f10-4948-8890-f67b7a50c9cf\",\n        \"title\": \"Test123\",\n        \"description\": \"Task hebat banger\",\n        \"status\": \"to_do\",\n        \"deadline\": \"2025-12-20T00:00:00.000Z\",\n        \"created_by\": \"Muhammad Mizzy\",\n        \"created_at\": \"2025-12-18T03:20:43.871Z\"\n    }\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}"
+								},
+								"url": "{{baseUrl}}/api/task"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "259"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"103-2iLjA6pgUIgU83ZdMoKNilSOECw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 03:14:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 400,\n    \"message\": \"title Invalid input: expected string, received undefined\",\n    \"error\": [\n        {\n            \"field\": \"title\",\n            \"message\": \"Invalid input: expected string, received undefined\"\n        },\n        {\n            \"field\": \"description\",\n            \"message\": \"Invalid input: expected string, received undefined\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update task",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test123\",\r\n    \"description\": \"Test update 12345\",\r\n    \"status\": \"to_do\", // to_do, in_progress, done\r\n    \"deadline\": \"2025-12-20\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/task/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"task",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2c22e607-9f10-4948-8890-f67b7a50c9cf"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Test123\",\r\n    \"description\": \"Test update 12345\",\r\n    \"status\": \"to_do\",\r\n    \"deadline\": \"2025-12-20\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2c22e607-9f10-4948-8890-f67b7a50c9cf"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "281"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"119-at0HT83QsFTEQCAO5FmnQSVTy0M\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 03:23:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"message\": \"Task has been updated\",\n    \"data\": {\n        \"task_id\": \"2c22e607-9f10-4948-8890-f67b7a50c9cf\",\n        \"title\": \"Test123\",\n        \"description\": \"Test update 12345\",\n        \"status\": \"to_do\",\n        \"deadline\": \"2025-12-20T00:00:00.000Z\",\n        \"created_by\": \"Muhammad Mizzy\",\n        \"created_at\": \"2025-12-18T03:20:43.871Z\"\n    }\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Test123\",\r\n    \"description\": \"Test update 12345\",\r\n    \"status\": \"to_do\",\r\n    \"deadline\": \"2025-12-20\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-y5YeURBpu4Cd1iImZY2hRKUEXoI\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 03:31:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 404,\n    \"message\": \"Task not found\"\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2c22e607-9f10-4948-8890-f67b7a50c9cf"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "166"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a6-KkSAt+EIgGASPsGzTnBnSu1NrTE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 03:37:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 400,\n    \"message\": \"field At least one field must be provided for update\",\n    \"error\": [\n        {\n            \"field\": \"unknown\",\n            \"message\": \"At least one field must be provided for update\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Read task",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/task?status=in_progress&sortOrder=DESC",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"task"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "in_progress"
+								},
+								{
+									"key": "sortOrder",
+									"value": "DESC"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task?status=in_progress&sortOrder=DESC",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "in_progress"
+										},
+										{
+											"key": "sortOrder",
+											"value": "DESC"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "632"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"278-sPSYEJr/ps9UZHtw04wX4HsBnvk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 03:52:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"message\": \"Tasks retrieved successfully\",\n    \"data\": [\n        {\n            \"task_id\": \"8d76f683-d50b-4c39-a5e4-ae12b423e1d8\",\n            \"user_id\": \"a908a103-c730-44b1-8dc3-a5dd573e1f02\",\n            \"title\": \"Test123456\",\n            \"description\": \"Task hebat banger\",\n            \"deadline\": \"2025-12-28T00:00:00.000Z\",\n            \"status\": \"in_progress\",\n            \"created_by\": \"Muhammad Mizzy\",\n            \"created_at\": \"2025-12-18T03:49:45.487Z\"\n        },\n        {\n            \"task_id\": \"f7bf1ea3-7a56-4566-b0bc-a614b3f93c93\",\n            \"user_id\": \"a908a103-c730-44b1-8dc3-a5dd573e1f02\",\n            \"title\": \"Test1234\",\n            \"description\": \"Task hebat banger\",\n            \"deadline\": \"2025-12-20T00:00:00.000Z\",\n            \"status\": \"in_progress\",\n            \"created_by\": \"Muhammad Mizzy\",\n            \"created_at\": \"2025-12-18T03:46:43.287Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete task",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/task/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"task",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2c22e607-9f10-4948-8890-f67b7a50c9cf"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/task/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"task",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2c22e607-9f10-4948-8890-f67b7a50c9cf"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-RPoVcz9VDuje8Q+ebdvehA9GHpI\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 18 Dec 2025 03:53:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 200,\n    \"message\": \"Task has been deleted\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
