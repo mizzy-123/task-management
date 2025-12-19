@@ -224,7 +224,7 @@ Password: 1234567890
 
 ### Create Task
 
-![Create Task](screenshots/create-task.png)
+![Create Task](screenshots/create_task.png)
 
 ## 📁 Struktur Project
 
