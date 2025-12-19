@@ -9,12 +9,19 @@ import {
     LoginUserResponse,
     toCreateUserResponse,
     toLoginUserResponseWithToken,
-    toUserResponse
+    toUserResponse,
+    toUserResponseWithToken,
+    UserResponseWithToken
 } from "../model/user.model";
-import { generateAccessToken, generateRefreshToken } from "../util/jwt";
+import {
+    generateAccessToken,
+    generateRefreshToken,
+    verifyRefreshToken
+} from "../util/jwt";
 import { UserValidation } from "../validation/user.validation";
 import { Validation } from "../validation/validation";
 import bcrypt from "bcryptjs";
+import { JwtPayload } from "jsonwebtoken";
 
 export class UserService {
     static async register(
@@ -88,5 +95,45 @@ export class UserService {
         });
 
         return toLoginUserResponseWithToken(user, accessToken);
+    }
+
+    static async refreshToken(
+        tokenFromCookie: string
+    ): Promise<UserResponseWithToken> {
+        if (!tokenFromCookie) {
+            throw new ResponseError(
+                401,
+                "Unauthorized: Refresh token not provided"
+            );
+        }
+
+        let payload: string | JwtPayload;
+
+        try {
+            payload = verifyRefreshToken(tokenFromCookie);
+            if (!payload || typeof payload !== "object" || !payload.id) {
+                throw new Error("Invalid token payload");
+            }
+        } catch {
+            throw new ResponseError(
+                401,
+                "Unauthorized: Invalid or expired refresh token"
+            );
+        }
+
+        const userRepository = AppDataSource.getRepository(User);
+        const user = await userRepository.findOne({
+            where: { user_id: payload.id }
+        });
+
+        if (!user) {
+            throw new ResponseError(401, "Unauthorized: User not found");
+        }
+
+        const loginResponse = toUserResponse(user);
+        const newAccessToken = generateAccessToken(loginResponse);
+        const newRefreshToken = generateRefreshToken(loginResponse);
+
+        return toUserResponseWithToken(user, newAccessToken, newRefreshToken);
     }
 }

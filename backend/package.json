@@ -55,12 +55,12 @@
     "check-lint": "npx eslint .",
     "check-format": "npx prettier . --check",
     "typeorm": "typeorm-ts-node-commonjs",
-    "migration:run": "npm run typeorm migration:run -- -d src/data-source.ts",
-    "migration:revert": "npm run typeorm migration:revert -- -d src/data-source.ts",
-    "schema:sync": "npm run typeorm schema:sync -- -d src/data-source.ts",
-    "migration:show": "npm run typeorm migration:show -- -d src/data-source.ts",
-    "migration:generate": "npm run typeorm migration:generate -- -d src/data-source.ts",
-    "migration:create": "npm run typeorm migration:create",
+    "migration:run": "npm run typeorm -- migration:run -d src/data-source.ts",
+    "migration:revert": "npm run typeorm -- migration:revert -d src/data-source.ts",
+    "schema:sync": "npm run typeorm -- schema:sync -d src/data-source.ts",
+    "migration:show": "npm run typeorm -- migration:show -d src/data-source.ts",
+    "migration:generate": "npm run typeorm -- migration:generate src/database/migration/migration -d src/data-source.ts",
+    "migration:create": "npm run typeorm -- migration:create src/database/migration/migration",
     "db:seed": "ts-node src/database/seeder/seed.ts",
     "db:format": "ts-node src/database/seeder/format.ts"
   }

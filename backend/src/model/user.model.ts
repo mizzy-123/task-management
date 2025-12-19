@@ -7,6 +7,15 @@ export type UserResponse = {
     email: string;
 };
 
+export type UserResponseWithToken = {
+    id: string;
+    name: string;
+    username: string;
+    email: string;
+    access_token: string;
+    refresh_token: string;
+};
+
 export type CreateUserRequest = {
     username: string;
     name: string;
@@ -61,5 +70,20 @@ export function toLoginUserResponseWithToken(
         email: user.email,
         name: user.name,
         access_token: accessToken
+    };
+}
+
+export function toUserResponseWithToken(
+    user: User,
+    accessToken: string,
+    refreshToken: string
+): UserResponseWithToken {
+    return {
+        id: user.user_id,
+        email: user.email,
+        username: user.username,
+        name: user.name,
+        access_token: accessToken,
+        refresh_token: refreshToken
     };
 }

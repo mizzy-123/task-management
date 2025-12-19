@@ -15,3 +15,5 @@ const authLimiter = rateLimit({
 
 publicRouter.post("/login", authLimiter, UserController.login);
 publicRouter.post("/register", authLimiter, UserController.register);
+// Refresh token
+publicRouter.post("/refresh-token", UserController.refreshToken);

@@ -19,8 +19,6 @@ export type ReadTaskRequest = {
     status?: TaskStatus;
     sortBy?: "deadline" | "created_at";
     sortOrder?: "ASC" | "DESC";
-    page?: number;
-    limit?: number;
 };
 
 export type CreateTaskResponse = {

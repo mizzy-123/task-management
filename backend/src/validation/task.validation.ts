@@ -35,8 +35,6 @@ export class TaskValidation {
     static readonly READ: ZodType<ReadTaskRequest> = z.object({
         status: z.nativeEnum(TaskStatus).optional(),
         sortBy: z.enum(["deadline", "created_at"]).optional(),
-        sortOrder: z.enum(["ASC", "DESC"]).optional(),
-        page: z.coerce.number().int().min(1).optional(),
-        limit: z.coerce.number().int().min(1).max(100).optional()
+        sortOrder: z.enum(["ASC", "DESC"]).optional()
     });
 }
